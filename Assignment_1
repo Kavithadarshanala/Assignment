@@ -1,0 +1,85 @@
+public class Assignment {
+    public static void main(String[] args) {
+        // 1. Create an array and shuffle it
+        Integer[] array = {1, 2, 3, 4, 5, 6, 7};
+        Collections.shuffle(Arrays.asList(array));
+        System.out.println("Shuffled Array: " + Arrays.toString(array));
+
+        // 2. Convert a Roman Number to an integer
+        Assignment obj = new Assignment();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a Roman Number in capital letters: ");
+        String inputRoman= sc.nextLine();
+        System.out.println("The Integer value of given Roman number is:"+obj.romanToInt(inputRoman));
+        // 3. Check if the input is a pangram
+        Scanner sc1 = new Scanner(System.in);
+        System.out.print("Enter a sentence to check if it's a pangram: ");
+        String sentence = sc1.nextLine();
+        boolean isPangram = isPangram(sentence);
+        if (isPangram) {
+            System.out.println("The input is a pangram.");
+        } else {
+            System.out.println("The input is not a pangram.");
+        }
+    }
+
+    // Function to convert Roman Number to an integer
+   
+    	int NumValue(char rom){
+    	    if (rom == 'I')
+    	       return 1;
+    	    if (rom == 'V')
+    	       return 5;
+    	    if (rom == 'X')
+    	       return 10;
+    	    if (rom == 'L')
+    	       return 50;
+    	    if (rom == 'C')
+    	       return 100;
+    	    if (rom == 'D')
+    	       return 500;
+    	    if (rom == 'M')
+    	       return 1000;
+    	    return -1;
+    	 } 
+    	public int romanToInt(String str) {
+    	    int sum = 0;
+    	    for (int i=0; i<str.length(); i++) {
+    	       int s1 = NumValue(str.charAt(i));
+    	       if (i+1 <str.length()) {
+    	          int s2 = NumValue(str.charAt(i+1));
+    	          if (s1 >= s2) {
+    	             sum = sum + s1;
+    	          }
+    	          else {
+    	             sum = sum - s1;
+    	          } 
+    	       }
+    	       else {
+    	          sum = sum + s1;
+    	       } 
+    	    }
+    	    return sum;
+    	 } 
+    
+
+    // Function to check if a sentence is a pangram
+    public static boolean isPangram(String sentence) {
+        sentence = sentence.toLowerCase();
+        boolean[] alphabet = new boolean[26];
+        int totalChars = 0;
+
+        for (int i = 0; i < sentence.length(); i++) {
+            char ch = sentence.charAt(i);
+            if (ch >= 'a' && ch <= 'z') {
+                int index = ch - 'a';
+                if (!alphabet[index]) {
+                    alphabet[index] = true;
+                    totalChars++;
+                }
+            }
+        }
+
+        return totalChars == 26;
+    }
+}
