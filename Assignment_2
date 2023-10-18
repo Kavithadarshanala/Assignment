@@ -1,0 +1,14 @@
+//javascript 
+// 1. Reverse every word in a sentence
+function reverseWords(sentence) {
+    return sentence.split(" ").map(word => word.split("").reverse().join("")).join(" ");
+}
+
+const inputSentence = "This is a sunny day";
+const reversedSentence = reverseWords(inputSentence);
+console.log("Reversed Sentence: " + reversedSentence);
+
+// 2. Perform sorting of an array in descending order
+const numbers = [5, 1, 3, 9, 2, 8, 6];
+const sortedDescending = numbers.sort((a, b) => b - a);
+console.log("Sorted Array in Descending Order: " + sortedDescending);
